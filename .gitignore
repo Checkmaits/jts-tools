@@ -5,3 +5,8 @@ package-lock.json
 
 # macOS
 .DS_Store
+
+# Vercel stuff
+vercel.json
+.vercel/
+api/
