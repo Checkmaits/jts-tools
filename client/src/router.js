@@ -3,10 +3,12 @@ import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import FeaturedCategoriesView from "@/views/FeaturedCategoriesView.vue";
 
+import { API_URL } from "@/constants";
+
 async function checkAuth(to, from, next) {
-  let userId = localStorage.getItem("userId");
+  let userId = localStorage.getItem("id");
   let token = localStorage.getItem("token");
-  let request = await fetch(`http://localhost:4519/api/v1/users/${userId}`, {
+  let request = await fetch(`${API_URL}/api/v1/users/${userId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

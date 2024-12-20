@@ -14,20 +14,21 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   let version = require("../package.json").version;
-  res.status(200).json({ message: `JT's Tools (Server) v${version}` });
+  res.status(200).json({ message: `JT's Tools (Server) v${version} ⭐️` });
 });
 
 app.use("/api/v1/users", require("./routes/user.route"));
+app.use("/api/v1/featured-categories", require("./routes/featuredCategory.route"));
 
 app.use((req, res, next) => {
-  let error = new Error("Endpoint not found");
+  let error = new Error("Endpoint not found ❌");
   error.status = 404;
   next(error);
 });
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500).json({
-    message: error.message || "Internal server error",
+    message: error.message || "Internal server error ❌",
   });
 });
 
