@@ -29,9 +29,9 @@
 import { API_URL } from "@/constants";
 
 export default {
-  name: "FeaturedCategoriesCard",
+  name: "FeaturedBrandsCard",
   props: {
-    category: {
+    brand: {
       type: Object,
       required: true,
     },
@@ -42,9 +42,9 @@ export default {
   },
   data() {
     return {
-      imgSrc: this.category.imgSrc,
-      description: this.category.description,
-      link: this.category.link,
+      imgSrc: this.brand.imgSrc,
+      description: this.brand.description,
+      link: this.brand.link,
       error: "",
       success: "",
       loading: false,
@@ -61,7 +61,7 @@ export default {
       this.error = "";
       this.loading = true;
 
-      let request = await fetch(`${API_URL}/api/v1/featured-categories/edit/${this.category._id}`, {
+      let request = await fetch(`${API_URL}/api/v1/featured-brands/edit/${this.brand._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export default {
       this.error = "";
       this.loading = true;
 
-      let request = await fetch(`${API_URL}/api/v1/featured-categories/delete/${this.category._id}`, {
+      let request = await fetch(`${API_URL}/api/v1/featured-brands/delete/${this.brand._id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

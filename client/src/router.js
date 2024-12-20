@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import FeaturedCategoriesView from "@/views/FeaturedCategoriesView.vue";
+import FeaturedBrandsView from "@/views/FeaturedBrandsView.vue";
 
 import { API_URL } from "@/constants";
 
@@ -38,6 +39,12 @@ const router = createRouter({
       path: "/featured/categories",
       name: "FeaturedCategoriesView",
       component: FeaturedCategoriesView,
+      beforeEnter: checkAuth,
+    },
+    {
+      path: "/featured/brands",
+      name: "FeaturedBrandsView",
+      component: FeaturedBrandsView,
       beforeEnter: checkAuth,
     },
     {

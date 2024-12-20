@@ -16,18 +16,16 @@
           <i class="bi bi-grid-fill"></i>
           <span class="description">Categories</span>
         </router-link>
-        <a href="#" class="nav-link">
+        <router-link :to="{ name: 'FeaturedBrandsView' }" class="nav-link">
           <i class="bi bi-tags-fill"></i>
-          <span class="description">Products</span>
-        </a>
+          <span class="description">Brands</span>
+        </router-link>
       </div>
       <a href="#" class="nav-link">
         <i class="bi bi-currency-dollar"></i>
         <span class="description">Rates Calculator</span>
       </a>
     </nav>
-
-    <p class="small text-center text-secondary">v0.0.1</p>
   </aside>
   <main class="main-content">
     <slot></slot>
@@ -47,9 +45,6 @@ export default {
   left: 0;
   height: 100%;
   width: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: var(--bs-dark);

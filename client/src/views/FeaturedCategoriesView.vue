@@ -11,8 +11,8 @@ import FeaturedCategoriesCard from "@/components/FeaturedCategoriesCard.vue";
           <h1 class="mb-0">Featured Categories</h1>
           <p class="mb-0">Edit the categories displayed on the home page</p>
         </div>
+        <button v-if="categories.length < 8" class="btn btn-outline-success">Add</button>
       </div>
-      <button v-if="categories.length < 8" class="btn btn-outline-success">Add</button>
     </div>
     <div class="main__body mt-4">
       <div v-if="loading" class="spinner spinner-border"></div>
@@ -30,7 +30,6 @@ import { API_URL } from "@/constants";
 
 export default {
   name: "FeaturedCategoriesView",
-  components: { FeaturedCategoriesCard },
   data() {
     return {
       loading: true,
