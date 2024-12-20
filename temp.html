@@ -1,0 +1,233 @@
+<section id="home" class="home-page-content page-content">
+  <section class="homepage-slider">
+    <div class="container">
+      <!--START: home_carousel-->
+      <div class="homeCarousel flexslider" data-animation="[hc_effect]" data-slideshowspeed="[hc_delay]">
+        <ul class="slides">
+          <!--START: carousel-->
+          <li>
+            <a href="[link]" aria-label="Carousel scroll button">
+              <img
+                width="425"
+                height="220"
+                srcset="[image] 320w, [image] 480w, [image] 640w, [image] 960w, [image] 1200w"
+                src="[image]"
+                alt="[image]"
+                class="img-responsive"
+              />
+            </a>
+          </li>
+          <!--END: carousel-->
+        </ul>
+      </div>
+      <!--END: home_carousel-->
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <style scoped>
+        .brand-card {
+          margin-bottom: 15px;
+        }
+      </style>
+
+      <h2 class="header-specials">Featured Brands</h2>
+      <div id="featuredBrandsRow" class="row align-items-start">
+        <p id="featuredBrandsRow-loading">Loading...</p>
+      </div>
+    </div>
+
+    <script>
+      let featuredBrandsRow = document.getElementById("featuredBrandsRow");
+      let loading1 = document.getElementById("featuredBrandsRow-loading");
+      fetch("https://jts-tools-server.vercel.app/api/v1/featured-brands")
+        .then(function (request) {
+          if (!request.ok) {
+            let error = new Error("Unable to fetch featured brands...");
+            throw error;
+          }
+
+          return request.json();
+        })
+        .then(function (response) {
+          let data = response.data;
+          if (data.length > 0) {
+            loading1.style = "display: none !important";
+
+            data.forEach(function (brand) {
+              let brandCard = document.createElement("div");
+              let brandLink = document.createElement("a");
+              let brandImg = document.createElement("img");
+
+              brandCard.classList.add("brand-card", "col-12", "col-sm-6", "col-md-4", "col-lg-3");
+              brandLink.href = brand.link;
+              brandImg.src = brand.imgSrc;
+              brandImg.alt = brand.description;
+
+              brandLink.appendChild(brandImg);
+              brandCard.appendChild(brandLink);
+              featuredBrandsRow.appendChild(brandCard);
+            });
+          }
+        })
+        .catch(function (error) {
+          loading1.innerText = error.message;
+        });
+    </script>
+  </section>
+
+  <section class="products-section" style="margin-top: -15px !important">
+    <div class="container">
+      <style scoped>
+        .cat-card {
+          margin-bottom: 15px;
+        }
+      </style>
+
+      <h2 class="header-specials">Featured Categories</h2>
+      <div id="featuredCategoriesRow" class="row align-items-start">
+        <p id="featuredCategoriesRow-loading">Loading...</p>
+      </div>
+    </div>
+
+    <script>
+      let featuredCategoriesRow = document.getElementById("featuredCategoriesRow");
+      let loading = document.getElementById("featuredCategoriesRow-loading");
+      fetch("https://jts-tools-server.vercel.app/api/v1/featured-categories")
+        .then(function (request) {
+          if (!request.ok) {
+            let error = new Error("Unable to fetch featured categories...");
+            throw error;
+          }
+
+          return request.json();
+        })
+        .then(function (response) {
+          let data = response.data;
+          if (data.length > 0) {
+            loading.style = "display: none !important";
+
+            data.forEach(function (cat) {
+              let catCard = document.createElement("div");
+              let catLink = document.createElement("a");
+              let catImg = document.createElement("img");
+
+              catCard.classList.add("cat-card", "col-12", "col-sm-6", "col-md-4", "col-lg-3");
+              catLink.href = cat.link;
+              catImg.src = cat.imgSrc;
+              catImg.alt = cat.description;
+
+              catLink.appendChild(catImg);
+              catCard.appendChild(catLink);
+              featuredCategoriesRow.appendChild(catCard);
+            });
+          }
+        })
+        .catch(function (error) {
+          loading.innerText = error.message;
+        });
+    </script>
+  </section>
+
+  <!--START: FEATURE_MENU-->
+  <section class="products-section" style="margin-top: -15px !important">
+    <div class="container">
+      <h2 class="header-specials">[category_Header-specials]</h2>
+      <div class="product-carousel flexslider">
+        <!--START: CATEGORY_ITEMS-->
+        <ul class="product-items slides" data-productcols="[product-cols-number]">
+          <!--START: ITEM_TEMPLATE_0-->
+          <li>[product_items]</li>
+          <!--END: ITEM_TEMPLATE_0-->
+        </ul>
+        <!--END: CATEGORY_ITEMS-->
+      </div>
+    </div>
+  </section>
+  <!--END: FEATURE_MENU-->
+</section>
+
+<!--START: template_scripts-->
+<script
+  defer
+  id="FlexSliderJS"
+  type="text/javascript"
+  src="/assets/templates/common-core/lib/flexslider/jquery.flexslider-min.js"
+></script>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(
+    (function () {
+      FlexSliderJS.addEventListener("load", function () {
+        // Homepage Carousel
+        $(".homeCarousel").flexslider({
+          animation: jQuery(".homeCarousel").attr("data-animation"),
+          slideshow: true,
+          slideshowSpeed: jQuery(".homeCarousel").attr("data-slideshowspeed"),
+          controlNav: false,
+          keyboard: false,
+        });
+
+        // Product Scroll
+        // store the slider in a local variable
+        var $window = jQuery(window),
+          flexslider = {
+            vars: {},
+          };
+
+        $(".product-carousel").flexslider({
+          animation: "slide",
+          controlNav: false,
+          keyboard: false,
+          itemWidth: 210,
+          itemMargin: 0,
+          minItems: getGridSize(), // use function to pull in initial value
+          maxItems: getGridSize(), // use function to pull in initial value
+        });
+
+        // check grid size on resize event
+        $window.resize(function () {
+          var gridSize = getGridSize();
+
+          flexslider.vars.minItems = gridSize;
+          flexslider.vars.maxItems = gridSize;
+        });
+
+        setTimeout(function () {
+          window.dispatchEvent(new Event("resize"));
+        }, 100);
+      });
+
+      // tiny helper function to add breakpoints
+      function getGridSize() {
+        var proCol = jQuery(".product-carousel > ul.slides").attr("data-productcols");
+        return window.innerWidth <= 567 ? 1 : window.innerWidth < 992 ? 2 : proCol;
+      }
+
+      jQuery(document).ready(function () {
+        setTimeout(function () {
+          window.dispatchEvent(new Event("resize"));
+        }, 1000);
+      });
+    })()
+  );
+</script>
+<!--END: template_scripts-->
+
+<!--START: template_styles-->
+<link
+  rel="preload stylesheet"
+  href="/assets/templates/common-core/lib/flexslider/flexslider.css"
+  as="style"
+  media="screen"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript>
+  <link
+    href="/assets/templates/common-core/lib/flexslider/flexslider.css"
+    rel="stylesheet"
+    type="text/css"
+    media="screen"
+  />
+</noscript>
+<!--END: template_styles-->

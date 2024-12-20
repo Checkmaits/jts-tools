@@ -5,3 +5,11 @@ package-lock.json
 
 # macOS
 .DS_Store
+
+# Vercel stuff
+.vercel/
+api/
+vercel.json
+
+# Vue
+dist/

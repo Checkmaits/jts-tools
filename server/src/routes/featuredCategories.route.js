@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const controller = require("../controllers/featuredCategory.controller");
+const controller = require("../controllers/featuredCategories.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/", controller.getFeaturedCategories);

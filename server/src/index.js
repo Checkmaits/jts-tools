@@ -18,7 +18,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/users", require("./routes/user.route"));
-app.use("/api/v1/featured-categories", require("./routes/featuredCategory.route"));
+app.use("/api/v1/featured-categories", require("./routes/featuredCategories.route"));
+app.use("/api/v1/featured-brands", require("./routes/featuredBrands.route"));
+app.use("/api/v1/rates", require("./routes/rates.route"));
+app.use("/api/v1/quantity-pricing", require("./routes/quantityPricing.route"));
 
 app.use((req, res, next) => {
   let error = new Error("Endpoint not found ❌");
@@ -39,3 +42,5 @@ mongoose
     app.listen(port, () => console.log(`[JT's Tools]: Server running on port ${port}...`));
   })
   .catch((error) => console.error(error));
+
+module.exports = { app };

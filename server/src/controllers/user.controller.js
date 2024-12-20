@@ -92,8 +92,14 @@ async function createUser(req, res, next) {
       message: `User created successfully (ID: ${user.id}) ✅`,
     });
   } catch (_) {
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        message: "Failed to create User ❌",
+        errors: Object.values(error.errors).map((err) => err.message),
+      });
+    }
+
     next(new Error());
-    // TODO: mongoose errors
   }
 }
 

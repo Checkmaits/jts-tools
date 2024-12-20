@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "User passwordHash is required"],
   },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

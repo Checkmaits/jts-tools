@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:6900";
+export const API_URL = "https://jts-tools-server.vercel.app";
