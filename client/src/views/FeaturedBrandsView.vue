@@ -92,6 +92,7 @@ export default {
     };
   },
   created() {
+    document.title = "Featured Brands | JT's Tools";
     fetch(`${API_URL}/api/v1/featured-brands/`)
       .then((request) => {
         if (!request.ok) {

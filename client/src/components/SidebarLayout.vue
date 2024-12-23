@@ -21,10 +21,10 @@
           <span class="description">Brands</span>
         </router-link>
       </div>
-      <a href="#" class="nav-link">
+      <router-link :to="{ name: 'RatesCalculatorView' }" class="nav-link">
         <i class="bi bi-currency-dollar"></i>
         <span class="description">Rates Calculator</span>
-      </a>
+      </router-link>
     </nav>
   </aside>
   <main class="main-content">

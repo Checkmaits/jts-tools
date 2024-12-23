@@ -38,6 +38,7 @@ export default {
     };
   },
   created() {
+    document.title = "Featured Categories | JT's Tools";
     fetch(`${API_URL}/api/v1/featured-categories/`)
       .then((request) => {
         if (!request.ok) {

@@ -39,6 +39,9 @@ export default {
       loading: false,
     };
   },
+  created() {
+    document.title = "Login | JT's Tools";
+  },
   methods: {
     async handleSubmit() {
       let username = this.username;
